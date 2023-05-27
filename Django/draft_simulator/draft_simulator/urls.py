@@ -17,6 +17,7 @@ Including another URLconf
 
 from django.urls import path
 from . import views
+from . import champions
 
 urlpatterns = [
     path('champions/', views.champion_list),
