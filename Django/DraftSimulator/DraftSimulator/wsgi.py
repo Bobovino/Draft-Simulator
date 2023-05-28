@@ -1,5 +1,5 @@
 """
-WSGI config for draft_simulator project.
+WSGI config for DraftSimulator project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'draft_simulator.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'DraftSimulator.settings')
 
 application = get_wsgi_application()
