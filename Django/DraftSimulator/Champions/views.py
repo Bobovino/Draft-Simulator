@@ -1,6 +1,7 @@
 from django.shortcuts import render
+from .models import Champion
 from django.http import HttpResponse
 
-
-def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+def champion_list(request):
+    champions = Champion.objects.all()
+    return render(request, 'champion_list.html', {'champions': champions})

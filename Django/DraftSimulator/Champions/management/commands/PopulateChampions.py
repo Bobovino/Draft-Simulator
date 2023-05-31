@@ -13,10 +13,18 @@ class Command(BaseCommand):
 
 
         for champion in data['data'].values():
-            image_path = f"Champions\Data_Dragon\Champion_Images/{champion['image']['full']}"
+            image_path = f"C:/Users/rodry/Desktop/Draft Simulator/Draft-Simulator/Django/DraftSimulator/Data_Dragon/Champion_Images/{champion['image']['full']}"
             with open(image_path, 'rb') as img:
-                champion_instance = Champion(name=champion['name'])
-                champion_instance.image.save(champion['image']['full'], File(img), save=False)
-                champion_instance.save()
-                self.stdout.write(self.style.SUCCESS(f'Successfully added champion "{champion["name"]}"'))
+                if champion['name'] == 'Monkeyking':
+                    champion_instance = Champion(name='Wukong')
+                    champion_instance.image.save(champion['image']['full'], File(img), save=False)
+                    champion_instance.save()
+                    self.stdout.write(self.style.SUCCESS(f'Successfully added champion "{champion["name"]}"'))
+                else:
+                    champion_instance = Champion(name=champion['name'])
+                    champion_instance.image.save(champion['image']['full'], File(img), save=False)
+                    champion_instance.save()
+                    self.stdout.write(self.style.SUCCESS(f'Successfully added champion "{champion["name"]}"'))
+
+
 

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Champion List</title>
+    <style>
+        .grid-container {
+          display: grid;
+          grid-template-columns: auto auto auto auto auto auto; /* This will create three columns. Adjust as needed. */
+          padding: 10px;
+        }
+        
+        .grid-item {
+          background-color: rgba(255, 255, 255, 0.8);
+          border: 1px solid rgba(0, 0, 0, 0.8);
+          padding: 20px;
+          font-size: 30px;
+          text-align: center;
+        }
+        </style>
+</head>
+<body>
+    <div class="grid-container">
+    {% for champion in champions %}
+        <div class="grid-item">
+            <h2>{{ champion.name }}</h2>
+            <img src="{{ champion.image.url }}" alt="{{ champion.name }}">
+        </div>
+    {% empty %}
+        <p>No champions found.</p>
+    {% endfor %}
+</div>
+</body>
+</html>
