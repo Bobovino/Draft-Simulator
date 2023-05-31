@@ -134,5 +134,5 @@ MEDIA_URL = 'Champion_Images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'C:/Users/rodry/Desktop/Draft Simulator/Draft-Simulator/Django/DraftSimulator')
 
 STATICFILES_DIRS=(
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'Champion_Images'),
     )
