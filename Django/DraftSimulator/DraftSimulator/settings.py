@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-=^95$wxft!+dq8nc*46pdv&$0!14w)7@c5+6vvt*qj6=u$k$cm
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -135,7 +135,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATIC_URL = 'static/'
 
-MEDIA_URL = 'Champion_Images/'
+MEDIA_URL = ''
 MEDIA_ROOT = os.path.join(BASE_DIR, 'C:/Users/rodry/Desktop/Draft Simulator/Draft-Simulator/Django/DraftSimulator')
 
 STATICFILES_DIRS=(
