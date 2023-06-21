@@ -1,38 +1,11 @@
-
-.champion-card {
-  text-align: center;
+body {
+  margin: 0;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
 }
 
-.champion-card img {
-  width: 100%;
-  height: auto;
-}
-
-
-.champion-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  overflow-y: scroll;
-  background-color: green;
-  width: 1000px;
-  height: 500px;
-
-}
-
-.search-bar {
-  top: 0;
-  left: 0;
-  padding: 10px;
-}
-
-.search-input {
-  width: 200px;
-  padding: 5px;
-}
-
-.champion-grid-container{
-  gap: 10px;
-  max-width: 50%;
-  margin: 10% auto;
-  
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
