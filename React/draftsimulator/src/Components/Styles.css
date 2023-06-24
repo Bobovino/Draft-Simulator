@@ -18,14 +18,7 @@
     height: 500px;
   
   }
-  
-.champion-grid-container{
-    display:flex;
-    gap: 10px;
-    max-width: 50%;
-    margin: 10% auto;
-    
-  }
+
   .search-bar {
     top: 0;
     left: 0;
@@ -37,13 +30,58 @@
     padding: 5px;
   }
   
+.champion-grid-container{
+    display:flex;
+    gap: 10px;
+    max-width: 50%;
+    margin: 10% auto;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+
   .bodyNoBans{
     display:flex;
+    
   }
 
   .Bans{
-    justify-content: center;
     display:flex;
+    justify-content: space-between;
     height: 50px;
-    width:50px;
+    width: 100%; /* You might want to set this to 100% to take full width */
   }
+  
+.Bans-Blue,
+.Bans-Red {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  width: 45%; /* Adjust this value as needed */
+}
+
+.Bans-Blue {
+  justify-content: left;
+}
+
+.Bans-Red {
+  justify-content: right;
+}
+
+.BanCell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This will ensure the aspect ratio of the image is maintained */
+}
+
+.DroppableCell img {
+  width: 100%;
+  height: calc(100%); /* Adjust this value as needed */
+  object-fit: cover;
+}
+
+.DroppableCell p {
+  width: 100%;
+  height: 10px; /* Adjust this value as needed */
+  text-align: center;
+}

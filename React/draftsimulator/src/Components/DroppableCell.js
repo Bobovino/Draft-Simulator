@@ -42,12 +42,11 @@ function DroppableCell() {
 
   const cellStyle = {
     border: '1px solid black',
-    width: '170px',
-    height: '170px',
+    width: '100px',
+    height: '100px',
     margin: '10px',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: isOver ? 'lightblue' : 'white',
   };
 
@@ -59,6 +58,7 @@ function DroppableCell() {
     className="DroppableCell" 
     ref={cellRef} 
     style={cellStyle}
+    title="Drag and drop to switch positions. Right click to cancel the selection"
     onContextMenu={(e) => {
       e.preventDefault(); // Prevent the context menu from showing
       setChampion(null); // Make the cell empty
@@ -67,7 +67,6 @@ function DroppableCell() {
       {champion && (
         <>
           <img src={champion.image} alt={champion.name} />
-          <p>{champion.name}</p>
         </>
       )}
     </div>
