@@ -37,4 +37,13 @@
     padding: 5px;
   }
   
-  
+  .bodyNoBans{
+    display:flex;
+  }
+
+  .Bans{
+    justify-content: center;
+    display:flex;
+    height: 50px;
+    width:50px;
+  }

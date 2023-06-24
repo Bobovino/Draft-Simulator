@@ -1,24 +1,9 @@
 import React, { useState, useRef } from 'react';
-import { useDrag, useDrop } from 'react-dnd';
+import { useDrop } from 'react-dnd';
 
 
-function DroppableCell() {
+function BanCell() {
   const [champion, setChampion] = useState(null);
-
-  const [{ isDragging }, drag] = useDrag({
-    type: 'champion',
-    item: { champion },
-    end: (item, monitor) => {
-      if (monitor.didDrop()) {
-        // If the item drop was handled by a drop target, update the champion in this cell
-        const dropResult = monitor.getDropResult();
-        setChampion(dropResult.champion);
-      }
-    },
-    collect: (monitor) => ({
-      isDragging: monitor.isDragging(),
-    }),
-  });
 
   const [{ isOver }, drop] = useDrop({
     accept: 'champion',
@@ -42,8 +27,8 @@ function DroppableCell() {
 
   const cellStyle = {
     border: '1px solid black',
-    width: '170px',
-    height: '170px',
+    width: '200px',
+    height: '200px',
     margin: '10px',
     display: 'flex',
     justifyContent: 'center',
@@ -74,4 +59,4 @@ function DroppableCell() {
   );
 }
 
-export default DroppableCell;
+export default BanCell;

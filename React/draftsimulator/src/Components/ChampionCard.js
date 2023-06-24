@@ -2,10 +2,10 @@ import React from 'react';
 import { useDrag } from 'react-dnd';
 
 function ChampionCard({ champion }) {
-  
+
   const [{ isDragging }, drag] = useDrag({
     type: 'champion',
-    item: { champion},
+    item: { champion },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
