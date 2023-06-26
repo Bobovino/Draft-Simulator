@@ -15,6 +15,9 @@ export default function ChampionGrid(){
     // Initialize the state of the cells with null champions
     const [cells, setCells] = useState(Array(10).fill(null));
     const [banCells, setBanCells] = useState(Array(10).fill(null));
+    // Selected champions so that we can't pick two champs at the same time.
+    const [selectedChampions, setSelectedChampions] = useState(new Set());
+
 
     //Fetch the data from the Django API
     useEffect(() => {
@@ -45,34 +48,107 @@ export default function ChampionGrid(){
       return newBanCells;
     });
   }
+
+  // Function to reset the state of the cells and the selected champions
+  function reset() {
+    setCells(Array(10).fill(null));
+    setBanCells(Array(10).fill(null));
+    setSelectedChampions(new Set());
+  }
   
     return (
       <>
       <div className='champion-grid-container'>
       <div className='Bans'>
         <div className='Bans-Blue'>
-          <BanCell champion={cells[0]} setChampion={(champion) => setBanCellChampion(0, champion)} />
-          <BanCell champion={cells[1]} setChampion={(champion) => setBanCellChampion(1, champion)} />
-          <BanCell champion={cells[2]} setChampion={(champion) => setBanCellChampion(2, champion)} />
-          <BanCell champion={cells[3]} setChampion={(champion) => setBanCellChampion(3, champion)} />
-          <BanCell champion={cells[4]} setChampion={(champion) => setBanCellChampion(4, champion)} />
+        <BanCell
+          champion={banCells[0]}
+          setChampion={(champion) => setBanCellChampion(0, champion)}
+          selectedChampions={selectedChampions}
+          setSelectedChampions={setSelectedChampions}
+        />
+        <BanCell
+          champion={banCells[1]}
+          setChampion={(champion) => setBanCellChampion(1, champion)}
+          selectedChampions={selectedChampions}
+          setSelectedChampions={setSelectedChampions}
+        />
+        <BanCell
+          champion={banCells[2]}
+          setChampion={(champion) => setBanCellChampion(2, champion)}
+          selectedChampions={selectedChampions}
+          setSelectedChampions={setSelectedChampions}
+        />
+        <BanCell
+          champion={banCells[3]}
+          setChampion={(champion) => setBanCellChampion(3, champion)}
+          selectedChampions={selectedChampions}
+          setSelectedChampions={setSelectedChampions}
+        />
+        <BanCell
+          champion={banCells[4]}
+          setChampion={(champion) => setBanCellChampion(4, champion)}
+          selectedChampions={selectedChampions}
+          setSelectedChampions={setSelectedChampions}
+        />
+
         </div>
         <div className='Bans-Red'>
-          <BanCell champion={cells[5]} setChampion={(champion) => setBanCellChampion(5, champion)} />
-          <BanCell champion={cells[6]} setChampion={(champion) => setBanCellChampion(6, champion)} />
-          <BanCell champion={cells[7]} setChampion={(champion) => setBanCellChampion(7, champion)} />
-          <BanCell champion={cells[8]} setChampion={(champion) => setBanCellChampion(8, champion)} />
-          <BanCell champion={cells[9]} setChampion={(champion) => setBanCellChampion(9, champion)} />
+        <BanCell
+          champion={banCells[5]}
+          setChampion={(champion) => setBanCellChampion(5, champion)}
+          selectedChampions={selectedChampions}
+          setSelectedChampions={setSelectedChampions}
+        />
+        <BanCell
+          champion={banCells[6]}
+          setChampion={(champion) => setBanCellChampion(6, champion)}
+          selectedChampions={selectedChampions}
+          setSelectedChampions={setSelectedChampions}
+        />
+        <BanCell
+          champion={banCells[7]}
+          setChampion={(champion) => setBanCellChampion(7, champion)}
+          selectedChampions={selectedChampions}
+          setSelectedChampions={setSelectedChampions}
+        />
+        <BanCell
+          champion={banCells[8]}
+          setChampion={(champion) => setBanCellChampion(8, champion)}
+          selectedChampions={selectedChampions}
+          setSelectedChampions={setSelectedChampions}
+        />
+        <BanCell
+          champion={banCells[9]}
+          setChampion={(champion) => setBanCellChampion(9, champion)}
+          selectedChampions={selectedChampions}
+          setSelectedChampions={setSelectedChampions}
+        />
         </div>
       </div>
       <div className='bodyNoBans' >
       
         <div className="side-cells-blue">
-          <DroppableCell champion={cells[0]} setChampion={(champion) => setCellChampion(0, champion)} />
-          <DroppableCell champion={cells[1]} setChampion={(champion) => setCellChampion(1, champion)} />
-          <DroppableCell champion={cells[2]} setChampion={(champion) => setCellChampion(2, champion)} />
-          <DroppableCell champion={cells[3]} setChampion={(champion) => setCellChampion(3, champion)} />
-          <DroppableCell champion={cells[4]} setChampion={(champion) => setCellChampion(4, champion)} />
+          <DroppableCell champion={cells[0]}
+          setChampion={(champion) => setCellChampion(0, champion)}
+          selectedChampions={selectedChampions}
+          setSelectedChampions={setSelectedChampions} />
+          <DroppableCell champion={cells[1]}
+          setChampion={(champion) => setCellChampion(1, champion)}
+          selectedChampions={selectedChampions}
+          setSelectedChampions={setSelectedChampions} />
+          <DroppableCell champion={cells[2]}
+          setChampion={(champion) => setCellChampion(2, champion)}
+          selectedChampions={selectedChampions}
+          setSelectedChampions={setSelectedChampions} />
+          <DroppableCell champion={cells[3]}
+          setChampion={(champion) => setCellChampion(3, champion)}
+          selectedChampions={selectedChampions}
+          setSelectedChampions={setSelectedChampions} />
+          <DroppableCell champion={cells[4]}
+          setChampion={(champion) => setCellChampion(4, champion)}
+          selectedChampions={selectedChampions}
+          setSelectedChampions={setSelectedChampions} />
         </div>
         <div >
         
@@ -85,20 +161,38 @@ export default function ChampionGrid(){
             className="search-input"
           />
         </div>
+        
         <div className="champion-grid">
           {championsArray.filter(champion => champion.name.toLowerCase().includes(searchQuery.toLowerCase())).map(champion => (
-            <ChampionCard key={champion.name} champion={champion} />
+            <ChampionCard key={champion.name} champion={champion} selectedChampions={selectedChampions} />
           ))}
         </div>
         </div>
         <div className="side-cells-red">
-          <DroppableCell champion={cells[5]} setChampion={(champion) => setCellChampion(5, champion)} />
-          <DroppableCell champion={cells[6]} setChampion={(champion) => setCellChampion(6, champion)} />
-          <DroppableCell champion={cells[7]} setChampion={(champion) => setCellChampion(7, champion)} />
-          <DroppableCell champion={cells[8]} setChampion={(champion) => setCellChampion(8, champion)} />
-          <DroppableCell champion={cells[9]} setChampion={(champion) => setCellChampion(9, champion)} />
+          <DroppableCell champion={cells[5]}
+          setChampion={(champion) => setCellChampion(5, champion)}
+          selectedChampions={selectedChampions}
+          setSelectedChampions={setSelectedChampions} />
+          <DroppableCell champion={cells[6]}
+          setChampion={(champion) => setCellChampion(6, champion)}
+          selectedChampions={selectedChampions}
+          setSelectedChampions={setSelectedChampions} />
+          <DroppableCell champion={cells[7]}
+          setChampion={(champion) => setCellChampion(7, champion)}
+          selectedChampions={selectedChampions}
+          setSelectedChampions={setSelectedChampions} />
+          <DroppableCell champion={cells[8]}
+          setChampion={(champion) => setCellChampion(8, champion)}
+          selectedChampions={selectedChampions}
+          setSelectedChampions={setSelectedChampions} />
+          <DroppableCell champion={cells[9]}
+          setChampion={(champion) => setCellChampion(9, champion)}
+          selectedChampions={selectedChampions}
+          setSelectedChampions={setSelectedChampions} />
+
         </div>
       </div>
+      <button onClick={reset} style={{ display: 'block', margin: '0 auto' }}>Reset</button>
       </div>
       </>
     );

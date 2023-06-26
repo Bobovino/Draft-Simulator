@@ -1,13 +1,14 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
+import { Tooltip } from 'react-tooltip';
 
 
-function DroppableCell() {
-  const [champion, setChampion] = useState(null);
+function DroppableCell({ champion, setChampion, selectedChampions, setSelectedChampions }) {
 
   const [{ isDragging }, drag] = useDrag({
     type: 'champion',
     item: { champion },
+    canDrag: champion !== null,
     end: (item, monitor) => {
       if (monitor.didDrop()) {
         // If the item drop was handled by a drop target, update the champion in this cell
@@ -29,11 +30,13 @@ function DroppableCell() {
       if (champion) {
         const originalChampion = champion;
         setChampion(droppedChampion);
+        setSelectedChampions(prev => new Set([...prev, droppedChampion.name]));
         return { champion: originalChampion };
       }
   
       // Otherwise, just set the dropped champion
       setChampion(droppedChampion);
+      setSelectedChampions(prev => new Set([...prev, droppedChampion.name]));
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
@@ -60,15 +63,23 @@ function DroppableCell() {
     style={cellStyle}
     title="Drag and drop to switch positions. Right click to cancel the selection"
     onContextMenu={(e) => {
-      e.preventDefault(); // Prevent the context menu from showing
+      e.preventDefault();
+      if (champion) {
+      setSelectedChampions(prev => {
+        const newSelectedChampions = new Set([...prev]);
+        newSelectedChampions.delete(champion.name);
+        return newSelectedChampions;
+      }); // Prevent the context menu from showing
       setChampion(null); // Make the cell empty
     }}
+    }
     >
       {champion && (
         <>
           <img src={champion.image} alt={champion.name} />
         </>
       )}
+      
     </div>
   );
 }

@@ -1,15 +1,18 @@
 // BanCell.js
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useDrop } from 'react-dnd';
+import { Tooltip } from 'react-tooltip';
 
-function BanCell() {
-  const [champion, setChampion] = useState(null);
+
+
+function BanCell({ champion, setChampion, selectedChampions, setSelectedChampions }) {
 
   const [{ isOver }, drop] = useDrop({
     accept: 'champion',
     drop: (droppedItem, monitor) => {
       const { champion: droppedChampion } = droppedItem;
       setChampion(droppedChampion);
+      setSelectedChampions(prev => new Set([...prev, droppedChampion.name]));
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
@@ -36,13 +39,21 @@ function BanCell() {
     style={cellStyle}
     onContextMenu={(e) => {
       e.preventDefault(); // Prevent the context menu from showing
+      if (champion) {
+      setSelectedChampions(prev => {
+        const newSelectedChampions = new Set([...prev]);
+        newSelectedChampions.delete(champion.name);
+        return newSelectedChampions;
+      });
       setChampion(null); // Make the cell empty
+      } 
     }}>
       {champion && (
         <>
           <img src={champion.image} alt={champion.name} />
         </>
       )}
+      
     </div>
   );
 }

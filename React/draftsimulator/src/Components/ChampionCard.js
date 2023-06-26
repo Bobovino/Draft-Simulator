@@ -1,11 +1,13 @@
 import React from 'react';
 import { useDrag } from 'react-dnd';
+import { Tooltip } from 'react-tooltip';
 
-function ChampionCard({ champion }) {
+function ChampionCard({ champion,selectedChampions }) {
 
   const [{ isDragging }, drag,preview] = useDrag({
     type: 'champion',
     item: { champion },
+    canDrag: !selectedChampions.has(champion.name),
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
@@ -24,8 +26,7 @@ img.height = 50; // Set the height to the height of the ban cells
 img.onload = () => preview(img, { alt: champion.name });
 
   const cardStyle = {
-    opacity: isDragging ? 0.5 : 1,
-    display: isDragging ? 'none' : 'block',
+    opacity: isDragging || selectedChampions.has(champion.name) ? 0.5 : 1,
     cursor: 'move',
   };
 
