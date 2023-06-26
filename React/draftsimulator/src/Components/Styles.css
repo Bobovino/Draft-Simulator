@@ -1,7 +1,15 @@
 
+body {
+  background-color: #121212;
+}
+
+
+
 .champion-card {
     text-align: center;
+    border: 2px solid #3DAEBC;
   }
+  
   
 .champion-card img {
     width: 100%;
@@ -13,7 +21,8 @@
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     overflow-y: scroll;
-    background-color: lightgrey;
+    background-color: #242424;
+    color:#A7B5B5;
     width: 1000px;
     height: 500px;
   
@@ -60,6 +69,14 @@
   width: 45%; /* Adjust this value as needed */
 }
 
+.side-cells-blue {
+  border: 2px solid blue;
+}
+
+.side-cells-red {
+  border: 2px solid red;
+}
+
 .Bans-Blue {
   justify-content: left;
 }
@@ -68,10 +85,19 @@
   justify-content: right;
 }
 
+.DroppableCell, .BanCell, .ChampionCard img {
+  border-radius: 10px;
+}
+
+.BanCell {
+  border: 2px solid #C20F33;
+}
+
 .BanCell img {
   width: 100%;
   height: 100%;
   object-fit: cover; /* This will ensure the aspect ratio of the image is maintained */
+  
 }
 
 .DroppableCell img {

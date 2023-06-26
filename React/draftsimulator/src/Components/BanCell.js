@@ -10,10 +10,25 @@ function BanCell({ champion, setChampion, selectedChampions, setSelectedChampion
   const [{ isOver }, drop] = useDrop({
     accept: 'champion',
     drop: (droppedItem, monitor) => {
-      const { champion: droppedChampion } = droppedItem;
-      setChampion(droppedChampion);
-      setSelectedChampions(prev => new Set([...prev, droppedChampion.name]));
-    },
+        const { champion: droppedChampion } = droppedItem;
+      
+        // If there's already a champion in the cell, swap it with the dropped champion
+        if (champion) {
+          const originalChampion = champion;
+          setChampion(droppedChampion);
+          setSelectedChampions((prev) => {
+            const newSet = new Set(prev);
+            newSet.delete(originalChampion.name); // Remove the previous champion from the set
+            newSet.add(droppedChampion.name); // Add the dropped champion to the set
+            return newSet;
+          });
+          return { champion: originalChampion };
+        }
+      
+        // Otherwise, just set the dropped champion
+        setChampion(droppedChampion);
+        setSelectedChampions((prev) => new Set(prev).add(droppedChampion.name));
+      },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
     }),
