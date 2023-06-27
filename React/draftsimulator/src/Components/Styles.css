@@ -4,19 +4,6 @@ body {
 }
 
 
-
-.champion-card {
-    text-align: center;
-    border: 2px solid #3DAEBC;
-  }
-  
-  
-.champion-card img {
-    width: 100%;
-    height: auto;
-}
-  
-
 .champion-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -28,10 +15,13 @@ body {
   
   }
 
+
+
   .search-bar {
     top: 0;
     left: 0;
     padding: 10px;
+    
   }
   
   .search-input {
@@ -39,6 +29,21 @@ body {
     padding: 5px;
   }
   
+  .clear-button{
+    margin: 10px;
+  }
+  .champion-grid .ChampionCard img{
+    border: 5px solid rgb(243, 227, 8);
+}
+  .champion-grid .ChampionCard {
+    text-align: center;
+  }
+
+.champion-card img {
+  width: 100%;
+  height: auto;
+}
+
 .champion-grid-container{
     display:flex;
     gap: 10px;
@@ -69,13 +74,14 @@ body {
   width: 45%; /* Adjust this value as needed */
 }
 
-.side-cells-blue {
-  border: 2px solid blue;
+.side-cells-blue .DroppableCell {
+  border: 5px solid #4B778E;
 }
 
-.side-cells-red {
-  border: 2px solid red;
+.side-cells-red .DroppableCell {
+  border: 5px solid #8C4E47;
 }
+
 
 .Bans-Blue {
   justify-content: left;
@@ -89,9 +95,10 @@ body {
   border-radius: 10px;
 }
 
-.BanCell {
-  border: 2px solid #C20F33;
+div.DroppableCell, div.BanCell {
+  background-color: #242424;
 }
+
 
 .BanCell img {
   width: 100%;

@@ -31,7 +31,7 @@ img.onload = () => preview(img, { alt: champion.name });
   };
 
   return (
-    <div ref={drag} style={cardStyle} title="Drag and drop">
+    <div ref={drag} style={cardStyle} className="ChampionCard" title="Drag and drop">
       {/* Render the champion card content */}
       <img src={champion.image} alt={champion.name} />
       <p>{champion.name}</p>

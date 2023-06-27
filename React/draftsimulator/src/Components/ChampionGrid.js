@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import axios from 'axios';
 import "./Styles.css";
 import ChampionCard from './ChampionCard.js';
@@ -17,6 +17,8 @@ export default function ChampionGrid(){
     const [banCells, setBanCells] = useState(Array(10).fill(null));
     // Selected champions so that we can't pick two champs at the same time.
     const [selectedChampions, setSelectedChampions] = useState(new Set());
+
+    const inputRef = useRef();
 
 
     //Fetch the data from the Django API
@@ -154,12 +156,22 @@ export default function ChampionGrid(){
         
         <div className="search-bar">
           <input
+            ref={inputRef}
             type="text"
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
+            onKeyDown={e => {
+            if (e.key === 'Backspace') {
+            setSearchQuery('');
+            }
+            }}
             placeholder="Search champions..."
             className="search-input"
           />
+          <button className='clear-button' onClick={() => {
+          setSearchQuery('');
+          inputRef.current.focus();
+          }}>Clear</button>
         </div>
         
         <div className="champion-grid">
@@ -192,7 +204,7 @@ export default function ChampionGrid(){
 
         </div>
       </div>
-      <button onClick={reset} style={{ display: 'block', margin: '0 auto' }}>Reset</button>
+      <button onClick={reset} style={{ display: 'block', margin: '0 auto', fontSize: '20px', padding: '10px'}}>Reset</button>
       </div>
       </>
     );

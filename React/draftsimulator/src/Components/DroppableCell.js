@@ -54,13 +54,12 @@ function DroppableCell({ champion, setChampion, selectedChampions, setSelectedCh
   });
 
   const cellStyle = {
-    border: '1px solid black',
     width: '100px',
     height: '100px',
     margin: '10px',
     display: 'flex',
     justifyContent: 'center',
-    backgroundColor: isOver ? 'lightblue' : 'white',
+    backgroundColor: isOver ? 'lightblue' : '#242424',
     
   };
 

@@ -1,4 +1,3 @@
-// BanCell.js
 import React, { useRef } from 'react';
 import { useDrop } from 'react-dnd';
 import { Tooltip } from 'react-tooltip';
@@ -42,7 +41,7 @@ function BanCell({ champion, setChampion, selectedChampions, setSelectedChampion
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: isOver ? 'lightblue' : 'white',
+    backgroundColor: isOver ? 'lightblue' : '#242424',
   };
 
   const cellRef = useRef(null);
