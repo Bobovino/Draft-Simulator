@@ -5,9 +5,9 @@ import { Tooltip } from 'react-tooltip';
 
 function DroppableCell({ champion, setChampion, selectedChampions, setSelectedChampions }) {
 
-  const [{ isDragging }, drag] = useDrag({
+  const [{ isDragging }, drag] = useDrag(() => ({
     type: 'champion',
-    item: { champion },
+    item: () => champion && { champion },
     canDrag: champion !== null,
     end: (item, monitor) => {
       if (monitor.didDrop()) {
@@ -19,7 +19,7 @@ function DroppableCell({ champion, setChampion, selectedChampions, setSelectedCh
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
-  });
+  }), [champion]);
 
   const [{ isOver }, drop] = useDrop({
     accept: 'champion',
@@ -64,12 +64,15 @@ function DroppableCell({ champion, setChampion, selectedChampions, setSelectedCh
   };
 
   const cellRef = useRef(null);
-  drag(drop(cellRef));
+    drop(cellRef); // Always apply the drop ref
+  if (champion) {
+    drag(cellRef); // Only apply the drag ref if there's a champion
+  }
 
   return (
     <div 
     className="DroppableCell" 
-    ref={cellRef} 
+    ref={cellRef}  
     style={cellStyle}
     title="Drag and drop to switch positions. Right click to cancel the selection"
     onContextMenu={(e) => {

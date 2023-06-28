@@ -59,12 +59,38 @@ body {
     
   }
 
+  .side-cells-blue .DroppableCell {
+    border: 5px solid #237FBB;
+  }
+  
+  .side-cells-red .DroppableCell {
+    border: 5px solid red;
+  }
+  
+  .DroppableCell img {
+    width: 100%;
+    height: calc(100%); /* Adjust this value as needed */
+    object-fit: cover;
+  }
+  
+  .DroppableCell p {
+    width: 100%;
+    height: 10px; /* Adjust this value as needed */
+    text-align: center;
+  }
+
+  .DroppableCell, .BanCell, .ChampionCard img {
+    border-radius: 10px;
+  }
+  
+
   .Bans{
     display:flex;
     justify-content: space-between;
     height: 50px;
     width: 100%; /* You might want to set this to 100% to take full width */
   }
+  
   
 .Bans-Blue,
 .Bans-Red {
@@ -74,13 +100,6 @@ body {
   width: 45%; /* Adjust this value as needed */
 }
 
-.side-cells-blue .DroppableCell {
-  border: 5px solid #4B778E;
-}
-
-.side-cells-red .DroppableCell {
-  border: 5px solid #8C4E47;
-}
 
 
 .Bans-Blue {
@@ -91,15 +110,6 @@ body {
   justify-content: right;
 }
 
-.DroppableCell, .BanCell, .ChampionCard img {
-  border-radius: 10px;
-}
-
-div.DroppableCell, div.BanCell {
-  background-color: #242424;
-}
-
-
 .BanCell img {
   width: 100%;
   height: 100%;
@@ -107,14 +117,19 @@ div.DroppableCell, div.BanCell {
   
 }
 
-.DroppableCell img {
-  width: 100%;
-  height: calc(100%); /* Adjust this value as needed */
-  object-fit: cover;
+.BanCell {
+  position: relative;
 }
 
-.DroppableCell p {
-  width: 100%;
-  height: 10px; /* Adjust this value as needed */
-  text-align: center;
+.ban-icon {
+  color: white;
+  width: 25%;  /* 1/4 of the parent's width */
+  height: 25%; /* 1/4 of the parent's height */
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%); /* Center the icon horizontally */
 }
+
+
+
