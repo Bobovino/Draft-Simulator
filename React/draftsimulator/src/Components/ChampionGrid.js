@@ -1,9 +1,10 @@
-import React, { useState, useEffect,useRef } from 'react';
+import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import "./Styles.css";
 import ChampionCard from './ChampionCard.js';
 import DroppableCell from './DroppableCell';
 import BanCell from './BanCell';
+import { GrPowerReset } from 'react-icons/gr';
 
 
 export default function ChampionGrid(){
@@ -18,7 +19,7 @@ export default function ChampionGrid(){
     // Selected champions so that we can't pick two champs at the same time.
     const [selectedChampions, setSelectedChampions] = useState(new Set());
 
-    const inputRef = useRef();
+    /* const inputRef = useRef(); */
 
 
     //Fetch the data from the Django API
@@ -68,6 +69,7 @@ export default function ChampionGrid(){
           setChampion={(champion) => setBanCellChampion(0, champion)}
           selectedChampions={selectedChampions}
           setSelectedChampions={setSelectedChampions}
+          isFirstCell={true}
         />
         <BanCell
           champion={banCells[1]}
@@ -134,7 +136,9 @@ export default function ChampionGrid(){
           <DroppableCell champion={cells[0]}
           setChampion={(champion) => setCellChampion(0, champion)}
           selectedChampions={selectedChampions}
-          setSelectedChampions={setSelectedChampions} />
+          setSelectedChampions={setSelectedChampions} 
+          isFirstCell={true}
+          />
           <DroppableCell champion={cells[1]}
           setChampion={(champion) => setCellChampion(1, champion)}
           selectedChampions={selectedChampions}
@@ -156,10 +160,11 @@ export default function ChampionGrid(){
         
         <div className="search-bar">
           <input
-            ref={inputRef}
+            //ref={inputRef}
             type="text"
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
+            onClick={() => setSearchQuery('')}
             onKeyDown={e => {
             if (e.key === 'Backspace') {
             setSearchQuery('');
@@ -168,10 +173,10 @@ export default function ChampionGrid(){
             placeholder="Search champions..."
             className="search-input"
           />
-          <button className='clear-button' onClick={() => {
+          {/* <button className='clear-button' onClick={() => {
           setSearchQuery('');
           inputRef.current.focus();
-          }}>Clear</button>
+          }}>Clear</button> */}
         </div>
         
         <div className="champion-grid">
@@ -204,7 +209,9 @@ export default function ChampionGrid(){
 
         </div>
       </div>
-      <button onClick={reset} style={{ display: 'block', margin: '0 auto', fontSize: '20px', padding: '10px'}}>Reset</button>
+      <button className="reset-button" onClick={reset} style={{ display: 'block', margin: '0 auto', fontSize: '20px', padding: '10px'}}>
+        <GrPowerReset size={24} />
+      </button>
       </div>
       </>
     );

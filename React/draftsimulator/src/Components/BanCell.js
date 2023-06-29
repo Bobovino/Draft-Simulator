@@ -1,11 +1,6 @@
 import React, { useRef } from 'react';
 import { useDrop } from 'react-dnd';
-import { Tooltip } from 'react-tooltip';
 import { FaBan } from 'react-icons/fa';
-
-
-
-
 
 function BanCell({ champion, setChampion, selectedChampions, setSelectedChampions }) {
 

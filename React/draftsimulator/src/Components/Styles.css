@@ -1,19 +1,30 @@
 
 body {
   background-color: #121212;
+  color:#A7B5B5;
 }
 
 
 .champion-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(5, 1fr);
     overflow-y: scroll;
     background-color: #242424;
-    color:#A7B5B5;
-    width: 1000px;
-    height: 500px;
+    width: 850px;
+    height: 550px;
   
   }
+
+  .champion-grid {
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+  }
+  
+  .champion-grid::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari and Opera */
+  }
+  
 
 
 
@@ -21,17 +32,25 @@ body {
     top: 0;
     left: 0;
     padding: 10px;
+    padding-bottom: 20px;
+    background-color: #242424;
     
   }
   
   .search-input {
     width: 200px;
     padding: 5px;
+    border: 2px solid #568DC1;
+    border-radius: 2px;
+    background-color: #0A0A0A;
+    color:#A7B5B5;
   }
   
-  .clear-button{
+  
+/*   .clear-button{
     margin: 10px;
-  }
+  } */
+
   .champion-grid .ChampionCard img{
     border: 5px solid rgb(243, 227, 8);
 }
@@ -39,8 +58,13 @@ body {
     text-align: center;
   }
 
+.champion-card {
+    text-align: center;
+    
+}
+
 .champion-card img {
-  width: 100%;
+  width: 80%;
   height: auto;
 }
 
@@ -48,7 +72,7 @@ body {
     display:flex;
     gap: 10px;
     max-width: 50%;
-    margin: 10% auto;
+    margin: 2% auto;
     flex-direction: column;
     align-items: center;
     
@@ -60,11 +84,17 @@ body {
   }
 
   .side-cells-blue .DroppableCell {
-    border: 5px solid #237FBB;
+    border-left: 5px solid #237FBB;
+    border-bottom: 5px solid #237FBB;
+    border-right: 5px solid #121212;
+    border-top: 5px solid #121212;
   }
   
   .side-cells-red .DroppableCell {
-    border: 5px solid red;
+    border-right: 5px solid red;
+    border-top: 5px solid red;
+    border-left: 5px solid #121212;
+    border-bottom: 5px solid #121212;
   }
   
   .DroppableCell img {
@@ -87,8 +117,8 @@ body {
   .Bans{
     display:flex;
     justify-content: space-between;
-    height: 50px;
-    width: 100%; /* You might want to set this to 100% to take full width */
+    height: 75px;
+    width: 100%; 
   }
   
   
@@ -97,7 +127,7 @@ body {
   display: flex;
   justify-content: space-between;
   height: 100%;
-  width: 45%; /* Adjust this value as needed */
+  width: 45%; 
 }
 
 
@@ -119,17 +149,74 @@ body {
 
 .BanCell {
   position: relative;
+  width: 60px;
+  height: 60px;
 }
 
 .ban-icon {
   color: white;
-  width: 25%;  /* 1/4 of the parent's width */
-  height: 25%; /* 1/4 of the parent's height */
+  width: 25%;  
+  height: 25%; 
   position: absolute;
   bottom: 0;
   left: 50%;
-  transform: translateX(-50%); /* Center the icon horizontally */
+  transform: translateX(-50%); 
+}
+
+.reset-button {
+  background-color: #4A4A4A;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 15%;
 }
 
 
+
+.navbar {
+  height: 60px;
+  background-color: #242424;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+
+.navbar p {
+  margin:50px
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.navbar-left p{
+  margin: 3px;
+}
+
+.sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #242424;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.menu-icon {
+
+  margin:10px;
+  padding:20px;
+  /* bottom: 200px;
+  right: 50%;
+  transform: translateX(-50%); */
+}
 

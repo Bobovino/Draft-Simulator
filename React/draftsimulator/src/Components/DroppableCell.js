@@ -1,9 +1,8 @@
 import React, { useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
-import { Tooltip } from 'react-tooltip';
 
 
-function DroppableCell({ champion, setChampion, selectedChampions, setSelectedChampions }) {
+function DroppableCell({ champion, setChampion, selectedChampions, setSelectedChampions, isFirstCell }) {
 
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'champion',
@@ -87,12 +86,13 @@ function DroppableCell({ champion, setChampion, selectedChampions, setSelectedCh
     }}
     }
     >
-      {champion && (
+      {champion ? (
+        <img src={champion.image} alt={champion.name} />
+      ) : isFirstCell ? (
         <>
-          <img src={champion.image} alt={champion.name} />
+        <p>First Pick</p>
         </>
-      )}
-      
+      ) : null}
     </div>
   );
 }
