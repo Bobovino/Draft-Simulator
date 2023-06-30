@@ -3,9 +3,5 @@ body {
   padding: 0;
   background-color: 121212;
   overflow: hidden;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'PixelFont', sans-serif;
 }

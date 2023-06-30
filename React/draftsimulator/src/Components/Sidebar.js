@@ -10,6 +10,7 @@ function Sidebar({ open, toggleSidebar }) {
         <li>Tournament</li>
         <li>Clash</li>
         <li>Other game modes</li>
+        <li>Editor</li>
       </ul>
     </aside>
   );

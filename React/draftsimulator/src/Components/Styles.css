@@ -44,9 +44,29 @@ body {
     border-radius: 2px;
     background-color: #0A0A0A;
     color:#A7B5B5;
+    font-family: 'PixelFont', sans-serif;
   }
-  
-  
+
+  .search-input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    font-family: 'PixelFont', sans-serif;
+    color:#A7B5B5;
+  }
+
+  .search-input::-moz-placeholder { /* Firefox 19+ */
+    font-family: 'PixelFont', sans-serif;
+    color:#A7B5B5;
+  }
+
+  .search-input:-ms-input-placeholder { /* IE 10+ */
+    font-family: 'PixelFont', sans-serif;
+    color:#A7B5B5;
+  }
+
+  .search-input:-moz-placeholder { /* Firefox 18- */
+    font-family: 'PixelFont', sans-serif;
+    color:#A7B5B5;
+  }
+
 /*   .clear-button{
     margin: 10px;
   } */
