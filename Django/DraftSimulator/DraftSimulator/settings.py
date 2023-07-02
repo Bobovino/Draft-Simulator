@@ -21,13 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-=^95$wxft!+dq8nc*46pdv&$0!14w)7@c5+6vvt*qj6=u$k$cm'
+SECRET_KEY = os.getenv('draftsimulator_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
-
+ALLOWED_HOSTS = ['localhost', '127.0.0.1','Draftsimulator-env.eba-9t3eq8xp.eu-west-3.elasticbeanstalk.com']
 
 # Application definition
 
@@ -80,16 +79,29 @@ WSGI_APPLICATION = 'DraftSimulator.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
+if os.getenv('ENV') == 'production':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'draftsimulator-database-1',
+            'USER': os.getenv('DB_USER'),
+            'PASSWORD': os.getenv('DB_PASSWORD'),
+            'HOST': 'draftsimulator-database-1.cfgp2upiw5hg.eu-west-3.rds.amazonaws.com',
+            'PORT': '5432',
+        }
+    }
+else:
+    DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "draftdatabase",
         "USER": "postgres",
-        "PASSWORD": "31415926",
+        "PASSWORD": os.getenv('DB_PASSWORD'),
         "HOST": "127.0.0.1",
         "PORT": "5432",
     }
 }
+
 
 
 # Password validation
