@@ -4,6 +4,7 @@ import { useDrag, useDrop } from 'react-dnd';
 
 function DroppableCell({ champion, setChampion, selectedChampions, setSelectedChampions, isFirstCell }) {
 
+    // eslint-disable-next-line
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'champion',
     item: () => champion && { champion },

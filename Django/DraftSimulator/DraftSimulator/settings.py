@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 import os
+import boto3
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,7 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('draftsimulator_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+if os.getenv('ENV') == 'production':
+    DEBUG = False
+else:
+    DEBUG=True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1','Draftsimulator-env.eba-9t3eq8xp.eu-west-3.elasticbeanstalk.com']
 
@@ -144,12 +148,28 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
+if os.getenv('ENV') == 'production':
 
-STATIC_URL = 'static/'
+    #S3 Bucket
+    AWS_ACCESS_KEY_ID = os.getenv('AWS-KEY')
+    AWS_SECRET_ACCESS_KEY = os.getenv('AWS-SECRET-KEY')
+    AWS_STORAGE_BUCKET_NAME = 'elasticbeanstalk-eu-west-3-430180859042'
+    AWS_S3_REGION_NAME = 'eu-west-3' 
+    AWS_S3_CUSTOM_DOMAIN = 'elasticbeanstalk-eu-west-3-430180859042.s3.amazonaws.com'
+    AWS_DEFAULT_ACL = None  # Control default access permissions for uploaded files
 
-MEDIA_URL = ''
-MEDIA_ROOT = os.path.join(BASE_DIR, 'C:/Users/rodry/Desktop/Draft Simulator/Draft-Simulator/Django/DraftSimulator')
+    # Configure static and media file storage
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
 
-STATICFILES_DIRS=(
-    os.path.join(BASE_DIR, 'Champion_Images'),
+else:
+    STATIC_URL = 'static/'
+    MEDIA_URL = ''
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'C:/Users/rodry/Desktop/Draft Simulator/Draft-Simulator/Django/DraftSimulator')
+    STATICFILES_DIRS=(
+        os.path.join(BASE_DIR, 'Champion_Images'),
     )
+
+
